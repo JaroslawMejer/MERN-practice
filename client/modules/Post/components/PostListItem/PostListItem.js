@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
+import { thumbUpPost } from '../../PostActions'
 
 // Import Style
 import styles from './PostListItem.css';
@@ -17,6 +18,8 @@ function PostListItem(props) {
       <p className={styles['author-name']}><FormattedMessage id="by" /> {props.post.name}</p>
       <p className={styles['post-desc']}>{props.post.content}</p>
       <p className={styles['post-action']}><a href="#" onClick={props.onDelete}><FormattedMessage id="deletePost" /></a></p>
+      <p>Votes: {props.post.votes}</p>
+      <button onClick={() => thumbUpPost(props.post.cuid)}>+</button><button>-</button>
       <hr className={styles.divider} />
     </div>
   );
@@ -29,6 +32,7 @@ PostListItem.propTypes = {
     content: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
     cuid: PropTypes.string.isRequired,
+    votes: PropTypes.number.isRequired,
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
