@@ -87,22 +87,16 @@ export function thumbUpPost(cuid){
   return{
     type: THUMB_UP_POST,
     cuid
-  }
+  };
 }
 
 export function thumbUpRequest(cuid) {
-  return (dispatch) => {
-    return callApi(`posts/${cuid}`, 'put', {
-      post: {
-        votes: post.votes,
-      },
-    }).then(() => dispatch(thumbUpPost(cuid)));
-  };
+  return callApi(`posts/thumbup/${cuid}`, 'put').then(() => dispatch(thumbUpPost(cuid)));
 }
 
 export function thumbDownPost(cuid){
   return{
     type: THUMB_DOWN_POST,
     cuid
-  }
+  };
 }

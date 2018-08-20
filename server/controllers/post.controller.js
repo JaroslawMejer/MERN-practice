@@ -87,3 +87,12 @@ export function editPost(req, res) {
     res.json({ post });
   });
 }
+
+export function thumbUpPost(req, res) {
+  Post.findOneAndUpdate({ cuid: req.params.cuid }, { $inc: { votes: 1 } }, {new: true },function(err, response) {
+ if (err) {
+ callback(err);
+} else {
+ callback(response);
+}
+})};

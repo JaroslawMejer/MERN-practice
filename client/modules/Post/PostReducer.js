@@ -33,7 +33,7 @@ const PostReducer = (state = initialState, action) => {
               votes: post.votes + 1
             }
           }
-          return comment
+          return post
         })
       }
     case THUMB_DOWN_POST :
@@ -46,7 +46,7 @@ const PostReducer = (state = initialState, action) => {
               votes: post.votes - 1
             }
           }
-          return comment
+          return post
         })
       }
     default:
