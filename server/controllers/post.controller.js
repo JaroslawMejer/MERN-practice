@@ -89,10 +89,19 @@ export function editPost(req, res) {
 }
 
 export function thumbUpPost(req, res) {
-  Post.findOneAndUpdate({ cuid: req.params.cuid }, { $inc: { votes: 1 } }, {new: true },function(err, response) {
- if (err) {
- callback(err);
-} else {
- callback(response);
+  Post.update({ cuid: req.params.cuid }, { $inc: { votes: 1 } }).exec((err, post) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json({ post });
+  });
 }
-})};
+
+export function thumbDownPost(req, res) {
+  Post.update({ cuid: req.params.cuid }, { $inc: { votes: -1 } }).exec((err, post) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json({ post });
+  });
+}

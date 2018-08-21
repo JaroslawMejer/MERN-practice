@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { FormattedMessage } from 'react-intl';
-import { thumbUpPost } from '../../PostActions'
 
 // Import Style
 import styles from './PostListItem.css';
@@ -19,7 +18,7 @@ function PostListItem(props) {
       <p className={styles['post-desc']}>{props.post.content}</p>
       <p className={styles['post-action']}><a href="#" onClick={props.onDelete}><FormattedMessage id="deletePost" /></a></p>
       <p>Votes: {props.post.votes}</p>
-      <button onClick={() => thumbUpPost(props.post.cuid)}>+</button><button>-</button>
+      <button onClick={props.thumbUp}>+</button><button onClick={props.thumbDown}>-</button>
       <hr className={styles.divider} />
     </div>
   );

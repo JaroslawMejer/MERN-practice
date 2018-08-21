@@ -91,12 +91,21 @@ export function thumbUpPost(cuid){
 }
 
 export function thumbUpRequest(cuid) {
-  return callApi(`posts/thumbup/${cuid}`, 'put').then(() => dispatch(thumbUpPost(cuid)));
+  return (dispatch) =>{
+    return callApi(`posts/thumbup/${cuid}`, 'put').then(() => dispatch(thumbUpPost(cuid)))
+  };
 }
 
 export function thumbDownPost(cuid){
+  console.log('Funcka thumbdown odpala')
   return{
     type: THUMB_DOWN_POST,
     cuid
+  };
+}
+
+export function thumbDownRequest(cuid) {
+  return (dispatch) =>{
+    return callApi(`posts/thumbup/${cuid}`, 'put').then(() => dispatch(thumbDownPost(cuid)))
   };
 }
